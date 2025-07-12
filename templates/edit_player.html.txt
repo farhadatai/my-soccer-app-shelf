@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+<body>
+    <h2>Edit Player: {{ player.name }}</h2>
+    <form method="post">
+        <input type="submit" name="mark_attendance" value="Mark Attendance">
+        <br>
+        Progress: <textarea name="progress">{{ player.progress }}</textarea><br>
+        <input type="submit" value="Save">
+    </form>
+    <p>Attendance Dates:</p>
+    <ul>{% for att in attendance %}<li>{{ att.date }}</li>{% endfor %}</ul>
+</body>

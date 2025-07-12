@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+<body>
+    <h2>Coach Dashboard</h2>
+    <a href="{{ url_for('add_player') }}">Add Player</a>
+    <h3>Your Players</h3>
+    <ul>
+        {% for player in players %}
+        <li>{{ player.name }} (Age: {{ player.age }}, Team: {{ player.team }}) 
+            <a href="{{ url_for('edit_player', player_id=player.id) }}">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
