@@ -1,14 +1,16 @@
 {% extends 'index.html' %}
-<body>
-    <h2>Parent Dashboard</h2>
-    <h3>Your Players</h3>
-    <ul>
-        {% for player in players %}
-        <li>{{ player.name }} (Progress: {{ player.progress }}) 
-            <a href="{{ url_for('pay', player_id=player.id) }}">Pay Dues</a>
-        </li>
-        {% endfor %}
-    </ul>
-    <h3>Payments</h3>
-    <ul>{% for payment in payments %}<li>Amount: ${{ payment.amount / 100 }} (Status: {{ payment.status }})</li>{% endfor %}</ul>
-</body>
+{% block content %}
+<h2>Parent Dashboard</h2>
+<img src="{{ url_for('static', filename='images/fc-logo.png') }}" alt="FC Logo" class="logo">
+<h3>Your Players</h3>
+<ul>
+    {% for player in players %}
+    <li>{{ player.name }} (Progress: {{ player.progress }}) 
+        <a href="{{ url_for('pay', player_id=player.id) }}">Pay Dues</a>
+    </li>
+    {% endfor %}
+</ul>
+<h3>Payments</h3>
+<ul>{% for payment in payments %}<li>Amount: ${{ payment.amount / 100 }} (Status: {{ payment.status }})</li>{% endfor %}</ul>
+<p>Extra Info: Contact Coach for Questions</p>
+{% endblock %}

@@ -1,16 +1,18 @@
 {% extends 'index.html' %}
-<body>
-    <h2>Pay for {{ player.name }}</h2>
-    <button id="checkout-button">Pay $200</button>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        var stripe = Stripe('{{ stripe_key }}');
-        document.getElementById('checkout-button').addEventListener('click', function() {
-            fetch('/create-checkout-session/{{ player.id }}', { method: 'POST' })
-            .then(response => response.json())
-            .then(session => {
-                stripe.redirectToCheckout({ sessionId: session.id });
-            });
+{% block content %}
+<h2>Pay for {{ player.name }}</h2>
+<img src="{{ url_for('static', filename='images/fc-logo.png') }}" alt="FC Logo" class="logo">
+<p>Extra Note: <input name="payment_note"></p>
+<button id="checkout-button">Pay $200</button>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('{{ stripe_key }}');
+    document.getElementById('checkout-button').addEventListener('click', function() {
+        fetch('/create-checkout-session/{{ player.id }}', { method: 'POST' })
+        .then(response => response.json())
+        .then(session => {
+            stripe.redirectToCheckout({ sessionId: session.id });
         });
-    </script>
-</body>
+    });
+</script>
+{% endblock %}

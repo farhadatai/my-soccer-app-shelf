@@ -11,5 +11,6 @@
     {% else %}
         <a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Register</a>
     {% endif %}
+    {% block content %}{% endblock %}
 </body>
 </html>

@@ -1,14 +1,14 @@
 {% extends 'index.html' %}
-<body>
-    <h2>Register</h2>
-    <form method="post">
-        Username: <input name="username"><br>
-        Password: <input type="password" name="password"><br>
-        Role: <select name="role">
-            <option value="admin">Admin</option>
-            <option value="coach">Coach</option>
-            <option value="parent">Parent</option>
-        </select><br>
-        <input type="submit">
-    </form>
-</body>
+{% block content %}
+<h2>Register</h2>
+<form method="post">
+    Username: <input name="username"><br>
+    Password: <input type="password" name="password"><br>
+    Role: <select name="role">
+        <option value="admin">Admin</option>
+        <option value="coach">Coach</option>
+        <option value="parent">Parent</option>
+    </select><br>
+    <input type="submit">
+</form>
+{% endblock %}

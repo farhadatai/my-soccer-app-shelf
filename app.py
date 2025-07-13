@@ -51,6 +51,8 @@ def init_db():
     db.executescript('''
         CREATE TABLE IF NOT EXISTS user (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            full_name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
             username TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
             role TEXT NOT NULL
@@ -141,13 +143,15 @@ def index():
 @app.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
+        full_name = request.form['full_name']
+        email = request.form['email']
         username = request.form['username']
         password = request.form['password']
         role = request.form['role']
         db = get_db()
         error = None
 
-        if not username or not password or not role:
+        if not full_name or not email or not username or not password or not role:
             error = 'All fields required.'
         elif role not in ['admin', 'coach', 'parent']:
             error = 'Invalid role.'
@@ -155,8 +159,8 @@ def register():
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO user (username, password, role) VALUES (?, ?, ?)",
-                    (username, generate_password_hash(password), role),
+                    "INSERT INTO user (full_name, email, username, password, role) VALUES (?, ?, ?, ?, ?)",
+                    (full_name, email, username, generate_password_hash(password), role),
                 )
                 db.commit()
                 flash('Registered successfully. Please log in.')

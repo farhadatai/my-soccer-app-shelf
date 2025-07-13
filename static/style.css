@@ -1,0 +1,23 @@
+body {
+    background-color: #f0f0f0; /* Light gray back */
+    font-family: Arial;
+}
+h2 {
+    color: #0000ff; /* Blue title */
+}
+form {
+    border: 1px solid #ccc; /* Box around form */
+    padding: 20px;
+    width: 300px;
+    margin: auto; /* Center it */
+}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+img.logo {
+    width: 200px; /* Logo size */
+    display: block;
+    margin: auto;
+}

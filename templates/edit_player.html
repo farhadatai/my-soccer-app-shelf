@@ -1,12 +1,14 @@
 {% extends 'index.html' %}
-<body>
-    <h2>Edit Player: {{ player.name }}</h2>
-    <form method="post">
-        <input type="submit" name="mark_attendance" value="Mark Attendance">
-        <br>
-        Progress: <textarea name="progress">{{ player.progress }}</textarea><br>
-        <input type="submit" value="Save">
-    </form>
-    <p>Attendance Dates:</p>
-    <ul>{% for att in attendance %}<li>{{ att.date }}</li>{% endfor %}</ul>
-</body>
+{% block content %}
+<h2>Edit Player: {{ player.name }}</h2>
+<img src="{{ url_for('static', filename='images/fc-logo.png') }}" alt="FC Logo" class="logo">
+<form method="post">
+    <input type="submit" name="mark_attendance" value="Mark Attendance">
+    <br>
+    Progress: <textarea name="progress">{{ player.progress }}</textarea><br>
+    Extra Note: <textarea name="extra_note"></textarea><br>
+    <input type="submit" value="Save">
+</form>
+<p>Attendance Dates:</p>
+<ul>{% for att in attendance %}<li>{{ att.date }}</li>{% endfor %}</ul>
+{% endblock %}

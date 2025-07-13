@@ -1,15 +1,17 @@
 {% extends 'index.html' %}
-<body>
-    <h2>Add Player</h2>
-    <form method="post">
-        Name: <input name="name"><br>
-        Age: <input name="age" type="number"><br>
-        Team: <input name="team"><br>
-        Parent: <select name="parent_id">
-            {% for parent in parents %}
-            <option value="{{ parent.id }}">{{ parent.username }}</option>
-            {% endfor %}
-        </select><br>
-        <input type="submit">
-    </form>
-</body>
+{% block content %}
+<h2>Add Player</h2>
+<img src="{{ url_for('static', filename='images/fc-logo.png') }}" alt="FC Logo" class="logo">
+<form method="post">
+    Name: <input name="name"><br>
+    Age: <input name="age" type="number"><br>
+    Team: <input name="team"><br>
+    Player Email: <input name="player_email" type="email"><br>
+    Parent: <select name="parent_id">
+        {% for parent in parents %}
+        <option value="{{ parent.id }}">{{ parent.username }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="submit">
+</form>
+{% endblock %}
