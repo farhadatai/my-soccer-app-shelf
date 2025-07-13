@@ -1,12 +1,15 @@
 {% extends 'index.html' %}
 <body>
-    <h2>Edit Player: {{ player.name }}</h2>
+    <h2>Add Player</h2>
     <form method="post">
-        <input type="submit" name="mark_attendance" value="Mark Attendance">
-        <br>
-        Progress: <textarea name="progress">{{ player.progress }}</textarea><br>
-        <input type="submit" value="Save">
+        Name: <input name="name"><br>
+        Age: <input name="age" type="number"><br>
+        Team: <input name="team"><br>
+        Parent: <select name="parent_id">
+            {% for parent in parents %}
+            <option value="{{ parent.id }}">{{ parent.username }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit">
     </form>
-    <p>Attendance Dates:</p>
-    <ul>{% for att in attendance %}<li>{{ att.date }}</li>{% endfor %}</ul>
 </body>
